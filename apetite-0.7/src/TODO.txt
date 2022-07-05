@@ -1,0 +1,21 @@
+En vrac
+----------
+
+- fusionner read_timeml / timeml_reader
+  chacun s'occupe de pbs différents, mais le plus récent est timeml_reader, 
+  qui devra finir pas absorber read_timel (utilisé seulement par graphe_compare)
+
+- graphe_compare devrait être découpé en plusieurs morceaux
+   . une partie dans graph.Graphe, notamment tout ce qui concerne les conversions
+   en points
+   . une partie dans un nouveau module measure.py
+   pour regrouper les classes concernées (cf aussi Textstats développés pour 
+   le projet avec Xavier)
+   . des scripts executables faisant les comparaisons sur mesure
+
+** Intégrer tout ce qui a été fait sur les mesures de graph avec Xavier
+dans un sous-module 'evaluation'
+
+- visualisation de la connexité/structure temporelle directement sur le texte
+  par exemple en utilisant tikz (cf ce qui a été fait pour projet voiladis)
+  

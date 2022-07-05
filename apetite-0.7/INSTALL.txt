@@ -1,0 +1,26 @@
+Installation:
+--------------
+
+Use classical python module install
+
+* locally:
+ 
+> python setup.py build 
+
+* globally (as root)
+
+> python setup.py install
+
+In the first case, you must add the path to 
+the module to your python path, and the script to the path
+i.e. in bash: 
+
+export PYTHON_PATH=$PYTHON_PATH:installation_dir/build/lib/apetite
+export PATH=$PATH:installation_dir/build/scripts-xxx/
+
+Also, executables scripts are put locally in build/scripts
+
+Prerequisites:
+- python>=2.5
+- igraph and bindings for visualization and graph analysis
+

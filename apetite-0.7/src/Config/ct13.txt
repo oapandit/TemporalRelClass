@@ -1,0 +1,14 @@
+b--b--*--b:o:m:d:s--b--b--b:o:m:d:s--b--b:o:m:d:s--b--b--b:o:m:d:s--b
+bi--*--bi--bi:oi:mi:d:f--bi--bi:oi:mi:d:f--bi--bi:oi:mi:d:f--bi--bi:oi:mi:d:f--bi--bi--bi
+d--b--bi--d--*--b:o:m:d:s--bi:oi:mi:d:f--b--bi--d--bi:oi:mi:d:f--d--b:o:m:d:s
+di--b:fi:o:m:di--bi:oi:di:mi:si--oi:=:d:s:f:o:di:si:fi--di--o:di:fi--oi:di:si--o:di:fi--oi:di:si--di:fi:o--di--di:si:oi--di
+o--b--bi:oi:di:mi:si--o:d:s--b:fi:o:m:di--b:o:m--oi:=:d:s:f:o:di:si:fi--b--oi:di:si--o--di:fi:o--d:s:o--b:o:m
+oi--b:fi:o:m:di--bi--oi:d:f--bi:oi:mi:di:si--oi:=:d:s:f:o:di:si:fi--bi:oi:mi--o:di:fi--bi--oi:d:f--oi:bi:mi--oi--oi:di:si
+m--b--bi:oi:mi:di:si--o:d:s--b--b--o:d:s--b--f:fi:=--m--m--d:s:o--b
+mi--b:fi:o:m:di--bi--oi:d:f--bi--oi:d:f--bi--s:si:=--bi--d:f:oi--bi--mi--mi
+s--b--bi--d--b:fi:o:m:di--b:o:m--oi:d:f--b--mi--s--s:si:=--d--b:m:o
+si--b:fi:o:m:di--bi--oi:d:f--di--o:di:fi--oi--o:di:fi--mi--s:si:=--si--oi--di
+f--b--bi--d--bi:oi:mi:di:si--o:d:s--bi:oi:mi--m--bi--d--bi:oi:mi--f--f:fi:=
+fi--b--bi:oi:mi:di:si--o:d:s--di--o--oi:di:si--m--si:oi:di--o--di--f:fi:=--fi
+
+

@@ -1,0 +1,192 @@
+# valeurs associées à certaines dates en timeml
+# chaque valeur précise l'attribut timeml (cf table dans ??)
+# et la valeur ou seulement la valeur, sous la forme :
+# >> chaine attribut:valeur
+# ou 
+# >> chaine valeur
+#
+#
+# TODO: plus "feature structure"
+#   - instanciations traits multiples (ex temps verbe -> tense + morphology)
+#   - instanciations partielle/ fusion: premier(1) semestre(m:H)-> m:H1 
+#     doit gérer "valeur seule" et savoir a quoi combiner ...
+#     (ex premier semestre:  m:unit:H m:val:1 -> traduit en H1)
+#     refaire les autres aussi: lundi d:w2 -> d:unit:w d:val:2 -> traduction apres
+#   - inclure traduction temps des verbes de l'analyseur ->timeml
+
+# saisons (associé au mois)
+été	m:SU
+printemps	m:SP
+hiver		m:WT
+automne		m:FA
+
+# debut/fin/milieu associe au mod
+début mod:start
+fin mod:end
+milieu mod:mid
+
+
+# First fields : all the words that should be considered as days of the week
+# Second fields : their int representation
+lundi			d:w2
+mardi			d:w3
+mercredi		d:w4
+mer			d:w4
+jeudi			d:w5
+vendredi		d:w6
+ven			d:w7
+samedi			d:w7
+sam			d:w7
+dimanche		d:w1
+dim			d:w1
+
+# First column : the word to be considered as a month name
+# Second column : the number of the month (from 1 to 12)
+
+janvier		m:1
+jan		m:1
+février		m:2
+fev		m:2
+mars		m:3
+avril		m:4
+avr		m:4
+mai		m:5
+juin		m:6
+juillet		m:7
+juil		m:7
+aout		m:8
+août		m:8
+septembre	m:9
+sep		m:9
+octobre		m:10
+oct		m:10
+novembre	m:11
+nov		m:11
+décembre	m:12
+dec		m:12
+
+# First column : the textual number
+# Second column : the real number correspondance
+1er	1
+un		1
+deux		2
+trois		3
+quatre		4
+cinq		5
+six		6
+sept		7
+huit		8
+neuf		9
+
+dix		10
+onze		11
+douze		12
+treize		13
+quatorze	14
+quinze		15
+seize		16
+dix-sept	17
+dix-huit	18
+dix-neuf	19
+vingt		20
+vingt-quatre	24
+trente		30
+quarante		40
+cinquante		50
+soixante		60
+soixante-dix		70
+quatre-vingt		80
+quatre-vingts		80
+quatre-vingt-dix	90
+
+cent		100
+cents		100
+mille		1000
+million		1000000
+millions	1000000
+
+# mais aussi... (heure)
+midi		h:12
+# Tides 2003 section 4.2.2
+minuit		h:24
+
+#quantifieurs vagues (traités comme des nombres non specifiques)
+quelque	      XX
+plusieurs     XX
+environ	      mod:approx
+#etc...
+
+
+# romans: converted to int
+# (not here)
+
+# divers (check Tides/Timeml)
+matin		h:MO
+matinée		h:MO
+après-midi	h:AF
+soir		h:EV
+nuit		h:NI
+jour		h:DT
+journée		h:DT 
+week-end	d:WE
+# not in timeml ...
+aube		h:MO
+
+# valeurs vagues
+désormais	FUTURE_REF
+avenir		FUTURE_REF
+passé		PAST_REF
+récemment	PAST_REF
+actuellement	PRESENT_REF
+aujourd_hui	PRESENT_REF
+# a l heure actuelle
+
+# premier semestre m:H1, premier trimestre m:Q1
+semestre  m:H
+trimestre m:Q
+
+
+gmt	  t:gmt
+
+
+# unités de durées
+ans	 Y
+an	 Y
+années	 Y
+année	 Y
+mois	 M
+jours	 D
+jour	 D
+journées D
+# pb d'ambiguité journée=h:DT / unité de jour
+# journée unit:D h:DT + contexte
+#journée	 D
+# conflit Tides/Timeml DE/CE vs E C
+décennie E
+décennies E
+heures	  H
+heure	  H
+semaine	  W
+semaines  W
+siècle	  C
+siècles	  C
+minute	  MM
+minutes	  MM
+
+# autres pour robustesse
+# U=unknown
+temps	 U
+
+# autres ??
+
+# Temps des verbes
+ver_pc	tense:pc
+ver_pres	tense:present
+ver_fut	tense:futur
+ver_cond	tense:conditionnel
+ver_imp	tense:imparfait
+ver_subpres	tense:subpres
+ver_pqp	tense:pqp
+ver_ps	tense:ps
+ver_pc_sub	tense:pc_sub
+ver_imper	tense:imperatif

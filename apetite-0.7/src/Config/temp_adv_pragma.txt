@@ -1,0 +1,124 @@
+#################################
+#
+#  recyclage regles d'interpretation des adverbiaux temporels
+#  (from Apetite français)
+#  à reprendre pour générer classifieur E-T autonome
+#
+#
+#
+#
+##############################################################
+#
+# test de regles basiques adverbiaux temporels en contexte
+#    (utilisées par discourse.py)
+#
+# reprend beforeafter+temp adv meaning
+#
+# TODO: 
+#   - verifier que l'ordre n'a pas d'importance (pas sur, les signaux sont sans doute prioritaires!)
+#   - variables ? ex
+#          adv:dateTF -> relation:focus=ds:TF 
+##############################################################
+MACRO signal_avant = [avant,plus_tot,il_y_a,dernier,precedent,depuis]
+MACRO signal_apres = [après,apres,plus_tard,dans,suivant,enfin,alors,soudain,tout_a_coup,puis,jusque]
+MACRO signal_pendant = [en,même,pour_l_heure,aujourd_hui,dès,des,pendant]
+# ?+ overlap ?
+MACRO rel_pendant = [trel_equals,trel_during,trel_start,trel_finish]
+MACRO daterelTF = [daterelTF1,daterelTF2,daterelTF3]
+MACRO daterelST = [daterelST1,daterelST2,daterelST3]
+
+MACRO past_tense = subimp,imparfait,ps,pqp,pc
+MACRO present_tense = present,conditionnel
+MACRO future_tense = futur
+#################################################################################
+#
+# types de signaux
+#
+# le focus est un parametre contextuel (qui peut etre change par d'autres regles)
+# demanderait a etre mieux specifie
+##################################################################################
+#signal:signal_avant -> relation:rel:before relation:anchor:focus
+signal:signal_avant -> relation:rel:before
+#signal:signal_apres -> relation:rel:after  relation:anchor:focus
+signal:signal_apres -> relation:rel:after
+#signal:signal_pendant -> relation:rel:rel_pendant relation:anchor:focus
+signal:signal_pendant -> relation:rel:rel_pendant 
+
+
+###################################################
+# tense/relation with focus (temporalpreference)
+# factoriser 
+# codes whether the tense indicates
+# preferably a position before or after the focus (if we have
+#     to choose). 
+# = gives a preference of choice between the past and the future if
+# there is an ambiguity. For exemple, if the timex is just
+# "wednesday", we need to know if we are talking of "next"
+# wednesday or "last" wednesday.
+# "il part lundi" -> lundi apres ST
+# "il est parti lundi" -> lundi avant ST 
+################
+# A REFAIRE:
+#    devrait etre une regle de completion pas une relation ...
+#  subsumée par ci-dessous
+###################################################
+#event:tense:subimp      -> relation:rel:before relation:anchor:focus relation:first:timex
+#event:tense:imparfait	-> relation:rel:before relation:anchor:focus relation:first:timex
+#event:tense:ps		-> relation:rel:before relation:anchor:focus relation:first:timex
+#event:tense:pqp		-> relation:rel:before relation:anchor:focus relation:first:timex
+#event:tense:pc		-> relation:rel:before relation:anchor:focus relation:first:timex
+#
+#event:tense:present      -> relation:rel:after relation:anchor:focus relation:first:timex
+#event:tense:conditionnel -> relation:rel:after relation:anchor:focus relation:first:timex
+#event:tense:fut          -> relation:rel:after relation:anchor:focus relation:first:timex
+
+
+#######################################################
+#
+# types d'adverbiaux
+# TF: temporal focus
+# ST: speech time
+# 
+# Specs a eclaircir: 
+#   - adverbial doit etre relié a event (il part avant lundi -> (e_part < t_lundi))
+#   - adverbial est lié au contexte  (il part avant lundi) -> (ST < lundi + lundi=next_lundi)
+#
+# cas a considerer
+#   - traits spéciaux a interpreter
+#   - date partielle (manque année ou année et mois) -> prend annee dans ST/TF
+# compliqué....:      il part le 5 mai. 
+#                     il est parti le mois suivant
+#                    (jour de la semaine seulement ex: "d"="w2") -> avant/apres ST/TF suivant
+#                                                                   tps du verbe
+#######################################################
+
+# ? ajouter signal:None
+# determine juste lien event/timex et assigne le focus ... 
+# ! dangereux car depend de l'ordre d'interpretation
+
+#timex:timextype:daterelTF event:tense:past_tense -> focus:TF relation:rel:rel_pendant relation:anchor:event
+timex:timextype:daterelTF event:tense:past_tense -> focus:TF
+
+timex:timextype:daterelTF event:tense:past_tense -> focus:event relation:rel:before relation:anchor:timex
+timex:timextype:daterelST -> focus:ST relation:rel:rel_pendant relation:anchor:event
+
+
+timex:timextype:dateabs -> focus:event relation:rel:rel_pendant relation:anchor:event
+#timex:timextype:dateabs -> focus:event relation:anchor:event
+
+
+
+## heriter precisions du contexte ? qquechose comme
+# NB: incomplete inutile, car inherent a daterelTF/ST 
+# partie droite ?  timex:value(TF)
+#timex:timextype:daterelTF timex:timextype:value:incomplete() -> timex:timextype:value:from:TF
+#timex:timextype:daterelST timex:timextype:value:incomplete() -> timex:timextype:value:from:ST
+
+
+
+
+# durees ?
+#dureerelST -> 
+#dureerelTF -> 
+
+
