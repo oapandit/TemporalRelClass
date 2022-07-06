@@ -1,24 +1,8 @@
-import os
 import numpy as np
 from read_vec_data import read_vec_data
 from models import models
-from optimize import maintain_consistency
-from sklearn.metrics import f1_score
-import pickle
-import operator
-from sklearn.metrics import classification_report
-import logging
-from shutil import copyfile
-from xml.dom import minidom
-import sys
-import xml.etree.ElementTree as ET
-from tre_logistic_system import tre_logistic_system
-from statsmodels.stats.contingency_tables import mcnemar
-# from statsmodels.sandbox.stats.runs import mcnemar
-from sklearn.metrics import confusion_matrix
 import itertools
-from constants import *
-from result import EvaluationResult
+# from result import EvaluationResult
 from utils import *
 from sklearn.utils import class_weight
 from sklearn.linear_model import LogisticRegression
@@ -50,8 +34,8 @@ class tre_system:
         if not os.path.exists(self.models_path):
             os.makedirs(self.models_path)
         self.mcnemar_stat_list = []
-        self.maitain_consistency = maintain_consistency()
-        self.result = EvaluationResult(EXPT_NAME)
+        # self.maitain_consistency = maintain_consistency()
+        # self.result = EvaluationResult(EXPT_NAME)
         self.model = models(self.word_context_length, self.word_vector_size,self.char_vector_size,self.num_interval_relations,self.num_point_relations)
         self.data = None # to avoid reading data multiple times
         self.test_file_list = None
@@ -108,15 +92,13 @@ class tre_system:
             interaction_list = ["DEEP_CNN"]
         if is_list:
             nns = ["RNN", "GRU", "LSTM", "BRNN", "BGRU", "BLSTM"]
-            # optimizers = ['adam', 'sgd', 'rmsprop', 'adagrad', 'adadelta']
-            # nns = ["BRNN", "BGRU", "BLSTM"]
             optimizers = ['adam', 'sgd', 'rmsprop']
             num_rnn_neurons_list = [128]
             input_drop_out_list = [0.4]
             cnn_filters_list = [64]
-            # num_rnn_neurons_list = [16, 32, 64, 128, 256]
-            # input_drop_out_list = [0.2, 0.3, 0.4, 0.5]
-            # cnn_filters_list = [32, 64, 128, 256]
+            num_rnn_neurons_list = [16, 32, 64, 128, 256]
+            input_drop_out_list = [0.2, 0.3, 0.4, 0.5]
+            cnn_filters_list = [32, 64, 128, 256]
 
             # num_rnn_neurons_list = [16, 64, 256]
             # input_drop_out_list = [0.1, 0.3, 0.5]

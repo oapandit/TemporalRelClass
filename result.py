@@ -62,15 +62,15 @@ class EvaluationResult:
             with open(search_single_file_in_dir(PROCESSED_DATA_PATH,ev_pairs_file), "r") as f:
                 ev_pairs = f.readlines()
             num_ev_pairs +=len(ev_pairs)
-            print "For event pairs file {} , number of pairs are {}".format(f,len(ev_pairs))
+            print("For event pairs file {} , number of pairs are {}".format(f,len(ev_pairs)))
             with open(search_single_file_in_dir(PROCESSED_DATA_PATH,rel_file), "r") as f:
                 rels = f.readlines()
             num_rel +=len(rels)
 
 
-        print "number of predictions",num_pred
-        print "number of pairs",num_ev_pairs
-        print "number of relations",num_rel
+        print("number of predictions",num_pred)
+        print("number of pairs",num_ev_pairs)
+        print("number of relations",num_rel)
 
 
     def create_pred_file(self, relation_pred, file_list):
@@ -81,10 +81,10 @@ class EvaluationResult:
         if relation_pred is None:
             relation_pred = load_from_pickle_file(os.path.join(SAVED_MODEL_PATH, PRED_SCORE_FILE_NAME))
         # else:
-        print("predicted relations data shape : {0}".format(relation_pred.shape))
+        print(("predicted relations data shape : {0}".format(relation_pred.shape)))
         if len(relation_pred.shape)==2:
             relation_pred = np.argmax(relation_pred, axis=1)
-        print("predicted relations data shape after doing argmax : {0}".format(relation_pred.shape))
+        print(("predicted relations data shape after doing argmax : {0}".format(relation_pred.shape)))
             # self.create_proba_score_file(relation_pred)
         print(file_list)
         counter = 0
@@ -228,7 +228,7 @@ class EvaluationResult:
         try:
             score= self.execute_temporal_awareness(self.gold_dir_path, self.pred_dir_path)
         except TimedOutExc as e:
-            print "Its taking too much time ..... Halting temporal awareness metric evaluation."
+            print("Its taking too much time ..... Halting temporal awareness metric evaluation.")
         return score
 
 
@@ -241,7 +241,7 @@ class EvaluationResult:
         try:
             score = self.execute_minimal_graph_evaluation(self.gold_dir_path, self.pred_dir_path)
         except TimedOutExc as e:
-            print "Its taking too much time ..... Halting transitive reduction metric evaluation."
+            print("Its taking too much time ..... Halting transitive reduction metric evaluation.")
         return score
 
 
@@ -255,7 +255,7 @@ class EvaluationResult:
 
     @deadline(600)#wait for 10 mins; otherwise quit
     def execute_temporal_awareness(self, gold_dir_path, pred_dir_path):
-        print("####" * 30)
+        print(("####" * 30))
         print("Evaluating system with temporal awareness metric")
         self.temp_awareness_score = te.te3_evaluate(gold_dir_path, pred_dir_path, debug_val=0)
         self.temp_awareness_score = self.round_of_score(self.temp_awareness_score)
@@ -263,9 +263,9 @@ class EvaluationResult:
 
     @deadline(600)#wait for 10 mins; otherwise quit
     def execute_minimal_graph_evaluation(self,gold_dir_path, pred_dir_path):
-        print("####" * 30)
+        print(("####" * 30))
         print("Testing with Transitive reduction metric")
-        print("####" * 30)
+        print(("####" * 30))
         measures = ["tr_recall", "tr_prec"]
         evaluation = Evaluation(gold_dir_path, pred_dir_path, ascii_ref=False)
         evaluation.compute(measures=measures)
@@ -298,8 +298,8 @@ class EvaluationResult:
         stat = sum(mn_score[0])
         print(stat)
         self.mcnemar_stat_list.append(stat)
-        print(mn_score.statistic)
-        print(mn_score.pvalue)
+        print((mn_score.statistic))
+        print((mn_score.pvalue))
 
 
     def evaluate_direct(self,relation_gold, relation_pred,is_print_report=False):
@@ -406,7 +406,7 @@ class EvaluationResult:
                 ev2 = tlink.attrib["relatedToEventInstance"]
                 gold_rel = tlink.attrib["relType"]
 
-                print "Gold relation for pair {} and {} is {}. ".format(ev1,ev2,gold_rel)
+                print("Gold relation for pair {} and {} is {}. ".format(ev1,ev2,gold_rel))
 
                 if pair_pred_tlinks is not None:
                     _ev1 = pair_pred_tlinks[ind]["eventInstanceID"]
@@ -414,8 +414,8 @@ class EvaluationResult:
                     _pair_pred_rel = pair_pred_tlinks[ind]["relType"]
 
                     if _ev1 == ev1 and _ev2 == ev2:
-                        print "Predicted pairwise relation for pair {} and {} is {}. ".format(_ev1, _ev2,
-                                                                                                       _pair_pred_rel)
+                        print("Predicted pairwise relation for pair {} and {} is {}. ".format(_ev1, _ev2,
+                                                                                                       _pair_pred_rel))
 
                 if glob_coh_tlinks is not None:
                     _ev1 = glob_coh_tlinks[ind]["eventInstanceID"]
@@ -423,7 +423,7 @@ class EvaluationResult:
                     _glob_rel = glob_coh_tlinks[ind]["relType"]
 
                     if _ev1 == ev1 and _ev2 == ev2:
-                        print "Predicted globally coherent relation for pair {} and {} is {}. ".format(_ev1, _ev2,_glob_rel)
+                        print("Predicted globally coherent relation for pair {} and {} is {}. ".format(_ev1, _ev2,_glob_rel))
 
 
 

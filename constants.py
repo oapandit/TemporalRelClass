@@ -1,28 +1,29 @@
 import os
 
 is_log_debug_messages = True
-base_dir = "/srv/storage/magnet@storage1.lille.grid5000.fr/opandit"
+base_dir = "/home/onkar/TemporalRelationClassification"
+word_embeddings_home = "/home/onkar/word_embeddings"
 
-data_path =os.path.join(base_dir,"Data/temp_relations")
+data_path =os.path.join(base_dir,"Data")
 raw_data_path = os.path.join(data_path,"raw_data")
 processed_data_path = os.path.join(data_path,"processed_data")
 processed_text_data_path = os.path.join(processed_data_path,"text_files")
 processed_vec_data_path = os.path.join(processed_data_path,"vector_files")
-log_files_path = os.path.join(base_dir,"Logs/temp_relation_class")
-results_path = os.path.join(base_dir,"Results/temp_relation_class")
+log_files_path = os.path.join(base_dir,"Logs")
+results_path = os.path.join(base_dir,"Results/evaluation")
 
 
 INTERVAL_RELATIONS = ['AFTER', 'BEFORE', 'DURING', 'DURING_INV', 'SIMULTANEOUS', 'VAGUE']
 
-TEMP_AWARENESS_TOOLKIT_PATH = "/home/magnet/onkarp/Code/temporal_relations/tempeval3_toolkit-master"
-TRANSITIVE_RED_EVAL_PATH = "/home/magnet/onkarp/Code/temporal_relations/apetite-0.7/src"
-SAVED_MODEL_PATH = "/home/magnet/onkarp/Results/temporal_relations/trained_models"
-SAVED_REPORTS = "/home/magnet/onkarp/Results/temporal_relations/reports"
+TEMP_AWARENESS_TOOLKIT_PATH = "/home/onkar/code/TemporalRelClass/tempeval3_toolkit-master"
+TRANSITIVE_RED_EVAL_PATH = "/home/onkar/code/TemporalRelClass/apetite-0.7/src"
+SAVED_MODEL_PATH = os.path.join(base_dir,"Results/trained_models")
+SAVED_REPORTS = os.path.join(base_dir,"Results/reports")
 # TML_FILES_PATH = "/home/magnet/onkarp/Data/temporal_relations/raw_data/td_dataset"
-TML_FILES_PATH = "/home/magnet/onkarp/Data/temporal_relations/raw_data"
-red_rel_vec_files_path = "/home/magnet/onkarp/Data/temporal_relations/processed_data/vector_files/mirza_data"
-GOLD_DIR_PATH = "/home/magnet/onkarp/Results/temporal_relations/tml_files/gold_files"
-PRED_DIR_PATH = "/home/magnet/onkarp/Results/temporal_relations/tml_files/pred_files"
+TML_FILES_PATH = raw_data_path
+red_rel_vec_files_path = os.path.join(data_path,"processed_data/vector_files/mirza_data")
+GOLD_DIR_PATH = os.path.join(base_dir,"Results/tml_files/gold_files")
+PRED_DIR_PATH = os.path.join(base_dir,"Results/tml_files/pred_files")
 
 feat_separator = "$#$#$#$"
 NUM_INTERVAL_RELATIONS = 6
@@ -30,9 +31,11 @@ NUM_POINT_RELATIONS = 3
 WORD_CONTEXT_LENGTH = 9
 WORD_VECTOR_SIZE = 300
 CHAR_VECTOR_SIZE = 10
-VEC_FILES_PATH = "/home/magnet/onkarp/Data/temporal_relations/processed_data/vector_files"
-PROCESSED_DATA_PATH = "/home/magnet/onkarp/Data/temporal_relations/processed_data"
-RAW_DATA_PATH = "/home/magnet/onkarp/Data/temporal_relations/processed_data/raw_text"
+
+PROCESSED_DATA_PATH = processed_data_path
+VEC_FILES_PATH = processed_vec_data_path
+RAW_DATA_PATH = os.path.join(processed_data_path,"raw_text")
+
 NUM_WORD_FOR_CHAR_EMD = 1
 
 PRED_SCORE_FILE_NAME = "pred_rel_proba_score_pickle_file"
@@ -73,5 +76,5 @@ rel_dict = {'s': 'SIMULTANEOUS', 'i': 'IDENTITY', 'a': 'AFTER', 'v': 'VAGUE', 'i
 timeml_file_extn = ".tml"
 
 
-word2vec_model_path = "/home/opandit/word_embeddings/GoogleNews-vectors-negative300.bin.gz"
-fasttext_model_path = "/home/opandit/word_embeddings/wiki-news-300d-1M-subword.vec"
+word2vec_model_path = os.path.join(word_embeddings_home,"GoogleNews-vectors-negative300.bin.gz")
+fasttext_model_path = os.path.join(word_embeddings_home,"wiki-news-300d-1M-subword.vec")

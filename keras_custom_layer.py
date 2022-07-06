@@ -1,6 +1,6 @@
 from tensorflow.keras import backend as K
-from tensorflow.keras.engine import InputSpec
-from tensorflow.keras.engine.topology import Layer
+from tensorflow.keras.layers import InputSpec
+# from tensorflow.keras.engine.topology import Layer
 import numpy as np
 from optimize import maintain_consistency
 
@@ -55,7 +55,7 @@ class TemporalMaxPooling(Layer):
 
 
 def global_loss(y_true, y_pred):
-    print "calling global loss"
+    print("calling global loss")
     # print K.learning_phase()
     # print "Executing dummy func"
     # y_pred = maintain_consistency().optimize_lagrangian_relaxed_point_relations(y_pred)

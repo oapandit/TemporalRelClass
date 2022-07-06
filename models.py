@@ -1,12 +1,12 @@
 from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Input, Dense, Dropout, Activation, Embedding, merge, Reshape
+from tensorflow.keras.layers import Input, Dense, Dropout, Activation, Embedding, Reshape
 from tensorflow.keras.layers import LSTM, SimpleRNN, GRU, TimeDistributed, Bidirectional
 from tensorflow.keras.layers import add, concatenate, multiply, subtract
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Conv1D, MaxPooling1D, AveragePooling2D
 from constants import *
-from keras_custom_layer import TemporalMaxPooling, global_loss
-from tensorflow.keras import optimizers
+# from keras_custom_layer import TemporalMaxPooling, global_loss
+# from tensorflow.keras import optimizers
 
 
 class models:
